@@ -1,4 +1,5 @@
 #include "../exercise.h"
+#include <iostream> // 补充必要头文件（若exercise.h未包含）
 
 // READ: 枚举类型 <https://zh.cppreference.com/w/cpp/language/enum>
 
@@ -36,9 +37,9 @@ ColorEnum convert_by_pun(Color c) {
     };
 
     TypePun pun;
-    // TODO: 补全类型双关转换
-
-    return pun.e;
+    // 补全类型双关转换：先给union的Color成员赋值，再读取ColorEnum成员
+    pun.c = c; // 将传入的Color类型值写入union的c成员
+    return pun.e; // 读取同一块内存的ColorEnum类型值，完成转换
 }
 
 int main(int argc, char **argv) {
